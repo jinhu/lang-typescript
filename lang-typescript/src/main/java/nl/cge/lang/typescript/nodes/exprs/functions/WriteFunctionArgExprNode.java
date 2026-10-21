@@ -1,0 +1,41 @@
+package nl.cge.lang.typescript.nodes.exprs.functions;
+
+import nl.cge.lang.typescript.nodes.exprs.TypeScriptExprNode;
+import nl.cge.lang.typescript.nodes.exprs.frame.AbstractFrameGetNode;
+import com.oracle.truffle.api.frame.Frame;
+import com.oracle.truffle.api.frame.VirtualFrame;
+
+/**
+ * An expression Node that represents an assignment to a function argument.
+ * Very similar to the class with the same name from part 16,
+ * the only difference is the {@link AbstractFrameGetNode}
+ * that gets used for function arguments in closures.
+ */
+public final class WriteFunctionArgExprNode extends TypeScriptExprNode {
+    @SuppressWarnings("FieldMayBeFinal")
+    @Child
+    private AbstractFrameGetNode currentOrParentFrameGetNode;
+
+    private final int index;
+
+    @SuppressWarnings("FieldMayBeFinal")
+    @Child
+    private TypeScriptExprNode initializerExpr;
+
+    public WriteFunctionArgExprNode(AbstractFrameGetNode currentOrParentFrameGetNode,
+                TypeScriptExprNode initializerExpr, int index) {
+        this.currentOrParentFrameGetNode = currentOrParentFrameGetNode;
+        this.index = index;
+        this.initializerExpr = initializerExpr;
+    }
+
+    @Override
+    public Object executeGeneric(VirtualFrame frame) {
+        Object value = this.initializerExpr.executeGeneric(frame);
+        Frame currentOrParentFrame = this.currentOrParentFrameGetNode.executeFrame(frame);
+        // we are guaranteed the argument array has enough elements,
+        // because of the logic in FunctionDispatchNode
+        currentOrParentFrame.getArguments()[this.index] = value;
+        return value;
+    }
+}

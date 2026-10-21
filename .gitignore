@@ -4,3 +4,4 @@
 build/
 .java-version
 graal_dumps/
+antlr-gen

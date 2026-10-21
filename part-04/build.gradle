@@ -1,6 +1,0 @@
-apply plugin: 'antlr'
-
-dependencies {
-    implementation project(':part-03')
-    antlr "org.antlr:antlr4:$antlr_version"
-}
