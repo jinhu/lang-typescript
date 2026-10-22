@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -183,7 +183,7 @@ class ArraysTest {
                 "}"
         );
 
-        Value globalVariables = this.context.getBindings("ezs");
+        Value globalVariables = this.context.getBindings("ts");
         Value array = globalVariables.getMember("array");
         Value secondIndex = globalVariables.getMember("secondIndex");
         assertEquals(2, secondIndex.execute(array).asInt());

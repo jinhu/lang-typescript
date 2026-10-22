@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Value;
@@ -154,7 +154,7 @@ class StringsTest {
                 "} " +
                 "let str = 'ab';"
         );
-        Value ezsBindings = this.context.getBindings("ezs");
+        Value ezsBindings = this.context.getBindings("ts");
         Value str = ezsBindings.getMember("str");
         Value access = ezsBindings.getMember("access");
 
@@ -288,7 +288,7 @@ class StringsTest {
                 "let v1 = readProp('', 'does not exist'); " +
                 "let v2 = readProp('', 'length');");
 
-        Value ezsBindings = this.context.getBindings("ezs");
+        Value ezsBindings = this.context.getBindings("ts");
         Value v1 = ezsBindings.getMember("v1");
         Value v2 = ezsBindings.getMember("v2");
         assertTrue(v1.isNull());

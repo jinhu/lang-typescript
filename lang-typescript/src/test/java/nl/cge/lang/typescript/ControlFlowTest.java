@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -79,7 +79,7 @@ class ControlFlowTest {
                 "let f1 = f  <  f; " +
                 "var f2 = f  <= f;"
         );
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertTrue(bindings.getMember("t1").asBoolean());
         assertFalse(bindings.getMember("f1").asBoolean());
         assertFalse(bindings.getMember("f2").asBoolean());
@@ -97,7 +97,7 @@ class ControlFlowTest {
                 "var s2 = sig(0); " +
                 "var s3 = sig(-12);"
         );
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertEquals(1, bindings.getMember("s1").asInt());
         assertEquals(0, bindings.getMember("s2").asInt());
         assertEquals(-1, bindings.getMember("s3").asInt());
@@ -239,7 +239,7 @@ class ControlFlowTest {
 
     @Test
     void negative_recursive_fibonacci_is_correct() {
-        Source fibProgram = Source.create("ezs", "" +
+        Source fibProgram = Source.create("ts", "" +
                 "function fib(n) { " +
                 "    if (n > -2) { " +
                 "        return Math.abs(n); " +

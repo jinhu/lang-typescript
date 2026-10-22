@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript.parser;
 
 import org.openjdk.jmh.annotations.Benchmark;
 

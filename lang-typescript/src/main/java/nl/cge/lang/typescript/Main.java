@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         Source source = Source
-                .newBuilder("ezs", new File("src/main/resources/fibonacci.js"))
+                .newBuilder("ts", new File("src/main/resources/fibonacci.js"))
                 .build();
 
         try (Context context = Context

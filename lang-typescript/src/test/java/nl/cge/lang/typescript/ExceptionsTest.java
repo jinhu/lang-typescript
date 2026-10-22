@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -37,7 +37,7 @@ class ExceptionsTest {
     void uncaught_thrown_strings_produce_message_and_stack_trace() throws Exception {
         this.ezsFile = "exceptions-throw-f3.js";
 
-        Source source = Source.newBuilder("ezs", new File("src/test/resources/" + this.ezsFile))
+        Source source = Source.newBuilder("ts", new File("src/test/resources/" + this.ezsFile))
                 .build();
         try {
             this.context.eval(source);
@@ -59,7 +59,7 @@ class ExceptionsTest {
 
     private void assertStackTraceElIs(StackTraceElement stackTraceEl, String methodName, int lineNr) {
         assertEquals(
-                "<ezs>." + methodName + "(" + this.ezsFile + ":" + lineNr + ")",
+                "<ts>." + methodName + "(" + this.ezsFile + ":" + lineNr + ")",
                 stackTraceEl.toString());
     }
 
@@ -152,7 +152,7 @@ class ExceptionsTest {
                 "let name = e.name; " +
                 "var message = e.message;"
         );
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertEquals("Error", bindings.getMember("name").asString());
         assertEquals("exception-message", bindings.getMember("message").asString());
     }
@@ -215,7 +215,7 @@ class ExceptionsTest {
                 "    message = e.message;" +
                 "}");
 
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertEquals("TypeError", bindings.getMember("name").asString());
         assertEquals("Cannot read properties of undefined (reading 'property')", bindings.getMember("message").asString());
     }
@@ -236,12 +236,12 @@ class ExceptionsTest {
     @Test
     void catch_fills_stack_trace() throws IOException {
         this.ezsFile = "exceptions-stack-top-level.js";
-        Source source = Source.newBuilder("ezs", new File("src/test/resources/" + this.ezsFile))
+        Source source = Source.newBuilder("ts", new File("src/test/resources/" + this.ezsFile))
                 .build();
 
         this.context.eval(source);
 
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertTrue(bindings.getMember("stackBefore").isNull());
         assertEquals("Error: msg\n\tat " + this.ezsFile + ":6:5", bindings.getMember("stackAfter").asString());
     }
@@ -249,12 +249,12 @@ class ExceptionsTest {
     @Test
     void catch_fills_stack_trace_from_func() throws IOException {
         this.ezsFile = "exceptions-stack-from-func.js";
-        Source source = Source.newBuilder("ezs", new File("src/test/resources/" + this.ezsFile))
+        Source source = Source.newBuilder("ts", new File("src/test/resources/" + this.ezsFile))
                 .build();
 
         this.context.eval(source);
 
-        Value bindings = this.context.getBindings("ezs");
+        Value bindings = this.context.getBindings("ts");
         assertTrue(bindings.getMember("stackBefore").isNull());
         assertEquals("Error: msg\n\tat f (" + this.ezsFile + ":6:9)\n\tat " + this.ezsFile + ":11:1",
                 bindings.getMember("stackAfter").asString());

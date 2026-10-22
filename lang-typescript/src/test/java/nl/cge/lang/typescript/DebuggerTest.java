@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import com.oracle.truffle.api.debug.Breakpoint;
 import com.oracle.truffle.api.debug.DebugScope;
@@ -61,7 +61,7 @@ class DebuggerTest {
 
     @Test
     void step_over_global_var_decl_and_into_func_call() {
-        Source source = Source.create("ezs", FIB_ITER);
+        Source source = Source.create("ts", FIB_ITER);
 
         try (DebuggerSession debuggerSession = this.debuggerTester.startSession()) {
             debuggerSession.suspendNextExecution();
@@ -176,7 +176,7 @@ class DebuggerTest {
 
     @Test
     void setting_breakpoint_suspends_execution() {
-        Source source = Source.create("ezs", FIB_ITER);
+        Source source = Source.create("ts", FIB_ITER);
 
         try (DebuggerSession debuggerSession = this.debuggerTester.startSession()) {
             debuggerSession.suspendNextExecution();

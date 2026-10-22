@@ -21,6 +21,8 @@ generateGrammarSource {
     outputDirectory = file(generatedOutputDir)
     arguments += ['-visitor', '-package', generatedPackage]
 }
+compileJava.dependsOn generateGrammarSource
+
 sourceSets {
     main {
         antlr {
@@ -42,5 +44,5 @@ jmh {
 }
 
 application {
-    mainClass = 'com.endoflineblog.truffle.part_17.Main'
+    mainClass = 'nl.cge.lang.typescript.Main'
 }

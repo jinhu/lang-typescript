@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -128,9 +128,9 @@ class ClassesTest {
                 "} " +
                 "let m = new M;"
         );
-        Value ezsBindings = this.context.getBindings("ezs");
-        Value m = ezsBindings.getMember("m");
-        Value invokeM = ezsBindings.getMember("invokeM");
+        Value tsBindings = this.context.getBindings("ts");
+        Value m = tsBindings.getMember("m");
+        Value invokeM = tsBindings.getMember("invokeM");
 
         assertEquals(14, invokeM.execute(m, 13).asInt());
     }

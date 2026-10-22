@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -36,7 +36,7 @@ class GlobalVariablesTest {
 
         assertEquals(14, result.asInt());
 
-        Value globalBindings = this.context.getBindings("ezs");
+        Value globalBindings = this.context.getBindings("ts");
         assertFalse(globalBindings.isNull());
         assertTrue(globalBindings.hasMembers());
         assertTrue(globalBindings.hasMember("a"));

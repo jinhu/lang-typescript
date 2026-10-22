@@ -1,4 +1,4 @@
-package com.endoflineblog.truffle.part_17;
+package nl.cge.lang.typescript;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.PolyglotException;
@@ -92,7 +92,7 @@ class StaticFunctionCallsTest {
                 "var fNeg = -Math.abs;"
         );
 
-        Value TypeScriptBindings = this.context.getBindings("ezs");
+        Value TypeScriptBindings = this.context.getBindings("ts");
         assertTrue(Double.isNaN(TypeScriptBindings.getMember("uNeg").asDouble()));
         assertTrue(Double.isNaN(TypeScriptBindings.getMember("fNeg").asDouble()));
     }
